@@ -1,0 +1,136 @@
+#E-commerce Application
+#collection
+import random
+
+users = {}   # dictionary to store user credentials {username: password}
+products = []   # list to store product details
+cart = []       # list to store cart items
+categories = set() # set to store unique categories
+
+# Register
+def register():
+    username = input("Enter Username: ")
+    if username in users:
+        print("Username already exists. Try another.")
+        return False
+    password = input("Enter Password: ")
+    users[username] = password
+    print("Registration Successful!")
+    return True
+
+# Login
+def login():
+    username = input("Enter Username: ")
+    password = input("Enter Password: ")
+    if username in users and users[username] == password:
+        print("Login Successful!")
+        return True
+    else:
+        print("Invalid Username or Password")
+        return False
+
+# OTP Verification
+def otp_verification():
+    otp = random.randint(1000, 9999)
+    print(f"Your OTP is: {otp}")  # In real-world, send via SMS/Email
+    entered_otp = int(input("Enter OTP: "))
+    if entered_otp == otp:
+        print("OTP Verified Successfully")
+        return True
+    else:
+        print("Invalid OTP. Try again")
+        return False
+
+# Add Product
+def add_Product():
+    pid = int(input("Enter Product ID: "))
+    name = input("Enter Product Name: ")
+    price = float(input("Enter Product Price: "))
+    category = input("Enter Product Category: ")
+    
+    Product = {
+        'id': pid,
+        'info': (pid, name, price),   # Tuple immutable
+        'category': category
+    }
+    products.append(Product)
+    categories.add(category)
+    
+    print("Product Added Successfully")
+
+# View Products
+def view_products():
+    if not products:
+        print("No products available")
+        return
+    print("\n==== Product List ======\n")
+    for p in products:
+        pid, pname, price = p['info']  # Tuple unpacking
+        print(f"ID: {pid}, Name: {pname}, Price: {price}, Category: {p['category']}")
+
+# Buy Product
+def buyproduct():
+    pid = int(input("Enter Product ID to buy: "))
+    for p in products:
+        if p['id'] == pid:
+            cart.append(p)
+            print("Product Added to Cart")
+            return
+    print("Product not found")
+
+# View Cart
+def view_cart():
+    if not cart:
+        print("Cart is empty")
+        return
+    total = 0
+    print("\n====== Cart Items ==========\n")
+    for item in cart:
+        pid, pname, price = item['info']
+        print(f"{pname} - {price}")
+        total += price
+    print("Total Amount: ", total)
+    print()
+
+# ------------------- MAIN -------------------
+print("======= Welcome to E-commerce Application ==========")
+
+# Register/Login/OTP flow
+while True:
+    print("\n1. Register\n2. Login\n3. Exit")
+    choice = int(input("Enter choice: "))
+    
+    if choice == 1:
+        register()
+    elif choice == 2:
+        if login():
+            if otp_verification():
+                break   # Exit loop and go to main menu
+    elif choice == 3:
+        exit()
+    else:
+        print("Invalid Choice")
+
+# Main Menu after successful login + OTP
+while True:
+    print("\n======= E-commerce Menu ===========")
+    print("1. Add Product")
+    print("2. View Product")
+    print("3. Buy Product") 
+    print("4. View Cart")
+    print("5. Exit")
+    
+    choice = int(input("Enter Your Choice: "))
+    
+    if choice == 1:
+        add_Product()
+    elif choice == 2:
+        view_products()
+    elif choice == 3:
+        buyproduct()
+    elif choice == 4:
+        view_cart()
+    elif choice == 5:
+        break
+    else:  
+        print("Invalid Choice")
