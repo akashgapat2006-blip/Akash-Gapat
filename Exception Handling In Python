@@ -1,0 +1,44 @@
+#Exception Handling in Python
+#usernotfoundError
+#productnotfoundError
+#EmployeenotfoundError
+
+class usernotfoundError(Exception):
+    pass
+
+try:
+    username = int(input("Enter Your Username: "))
+    users = {1: "Alice", 2: "Bob", 3: "Charlie"}
+    if username not in users:
+        raise usernotfoundError("User not found")
+except usernotfoundError as e:
+    print(e)
+else:
+    print("User found:", users[username])
+    
+class productnotfoundError(Exception):
+    pass
+
+try:
+    product_id = int(input("Enter Product ID: "))
+    products = {1: "Mobile Phone", 2: "Laptop", 3: "Tablet"}
+    if product_id not in products:
+        raise productnotfoundError("Product not found")
+except productnotfoundError as e:
+    print(e)
+else:
+    print("Product found:", products[product_id])
+    
+    
+class employeenotfoundError(Exception):
+    pass
+
+try:
+    employee_id = int(input("Enter Employee ID: "))
+    employees = {101: "Akash", 102: "Kedar", 103: "Raj"}
+    if employee_id not in employees:
+        raise employeenotfoundError("Employee not found") 
+except employeenotfoundError as e:
+    print(e)
+else:
+    print("employee found:", employees[employee_id])   
