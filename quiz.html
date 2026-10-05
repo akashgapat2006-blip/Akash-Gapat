@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SE Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Software Engineering Quiz</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="modules.html">Modules</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="case-study.html">Case Studies</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. Which model is best for small projects?</p>
+        <label><input type="radio" name="q1" value="Waterfall"> Waterfall</label>
+        <label><input type="radio" name="q1" value="Agile"> Agile</label>
+        <label><input type="radio" name="q1" value="Spiral"> Spiral</label>
+      </div>
+
+      <div class="question">
+        <p>2. What does SDLC stand for?</p>
+        <label><input type="radio" name="q2" value="Software Development Life Cycle"> Software Development Life Cycle</label>
+        <label><input type="radio" name="q2" value="System Design Logic Cycle"> System Design Logic Cycle</label>
+      </div>
+
+      <button type="button" onclick="checkQuiz()">Submit</button>
+    </form>
+
+    <p id="result"></p>
+  </main>
+</body>
+</html>
